@@ -9,6 +9,8 @@ import java.util.Objects;
  */
 public class Strings {
 
+    public static final String EMPTY_STRING = "";
+
     /**
      * 符合条件：字符串为 null 或 "" 或为 " "... ，返回true
      *
