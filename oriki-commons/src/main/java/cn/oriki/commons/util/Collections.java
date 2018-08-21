@@ -16,7 +16,7 @@ public class Collections {
      * @return 集合不为空并且存在数据的情况返回 true
      */
     public static boolean nonNullAndHasElements(Collection<?> collection) {
-        return !isNullOrNoElement(collection);
+        return !isNullOrEmpty(collection);
     }
 
     /**
@@ -25,20 +25,22 @@ public class Collections {
      * @param collection 集合
      * @return 集合为空或者不存在数据返回 true
      */
-    public static boolean isNullOrNoElement(Collection<?> collection) {
+    public static boolean isNullOrEmpty(Collection<?> collection) {
         return Objects.isNull(collection) || collection.isEmpty();
     }
 
     /**
-     * Collection 根据 separator 进行拼接，生成字符串
+     * 集合中的元素使用 separator 拼接
+     * <p>
+     * 拼接会过滤其中为空的元素
      *
-     * @param collection Collection 对象
+     * @param collection Collections对象
      * @param separator  分隔符
-     * @return 拼接后字符串
+     * @return 使用 separator 拼接的字符串
      */
     public static String join(Collection<?> collection, String separator) {
-        if (Objects.isNull(collection)) {
-            // 不存在映射返回空字符串
+        if (isNullOrEmpty(collection)) {
+            // 不存在映射或为没有元素，返回空字符串
             return Strings.EMPTY_STRING;
         } else {
             Iterator<?> iterator = collection.iterator();
@@ -53,13 +55,11 @@ public class Collections {
                     if (Objects.nonNull(first)) {
                         stringBuilder.append(first);
                     }
-
                     while (iterator.hasNext()) {
                         Object obj = iterator.next();
                         if (Objects.isNull(obj)) {
                             continue;
                         }
-
                         if (Objects.nonNull(separator)) {
                             stringBuilder.append(separator);
                         }
@@ -85,7 +85,7 @@ public class Collections {
     }
 
     /**
-     * 判断对象是否为集合或者为枚举集（备用）
+     * 判断对象是否为集合或者为枚举集
      *
      * @param e 待判断对象
      * @return 如果是集合子类，返回 true
@@ -106,6 +106,36 @@ public class Collections {
      */
     public static <T> List<T> nCopies(int n, T object) {
         return java.util.Collections.nCopies(n, object);
+    }
+
+    /**
+     * 对 List 集合进行等分
+     *
+     * @param list 待分割集合
+     * @param n    等分数量
+     * @param <T>  集合泛型
+     * @return 等分后的集合
+     */
+    public static <T> List<List<T>> averageAssign(List<T> list, int n) {
+        List<List<T>> result = new ArrayList<>();
+        // 计算余数
+        int remaider = list.size() % n;
+        // 计算商
+        int number = list.size() / n;
+        // 定义偏移量
+        int offset = 0;
+        for (int i = 0; i < n; i++) {
+            List<T> value;
+            if (remaider > 0) {
+                value = list.subList(i * number + offset, (i + 1) * number + offset + 1);
+                remaider--;
+                offset++;
+            } else {
+                value = list.subList(i * number + offset, (i + 1) * number + offset);
+            }
+            result.add(value);
+        }
+        return result;
     }
 
 }

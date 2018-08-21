@@ -3,6 +3,7 @@ package cn.oriki.commons.util;
 import com.google.common.collect.Lists;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -30,13 +31,13 @@ public class CollectionsTest {
 
     @Test
     public void isNullOrNoElement() {
-        boolean b = Collections.isNullOrNoElement(list);
+        boolean b = Collections.isNullOrEmpty(list);
         assertFalse(b);
 
-        boolean b1 = Collections.isNullOrNoElement(emptyList);
+        boolean b1 = Collections.isNullOrEmpty(emptyList);
         assertTrue(b1);
 
-        boolean b2 = Collections.isNullOrNoElement(null);
+        boolean b2 = Collections.isNullOrEmpty(null);
         assertTrue(b2);
     }
 
@@ -69,6 +70,19 @@ public class CollectionsTest {
     public void nCopies() {
         List<String> b = Collections.nCopies(4, "b");
         assertEquals(4, b.size());
+    }
+
+    @Test
+    public void averageAssign() {
+        ArrayList<Integer> integers = Lists.newArrayList(1, 2, 3, 4, 5, 6, 7, 8);
+        List<List<Integer>> lists = Collections.averageAssign(integers, 5);
+        lists.forEach(System.out::println);
+
+        List<List<Integer>> lists1 = Collections.averageAssign(integers, 4);
+        lists1.forEach(System.out::println);
+
+        List<List<Integer>> lists2 = Collections.averageAssign(integers, 3);
+        lists2.forEach(System.out::println);
     }
 
 }
