@@ -75,11 +75,16 @@ public class CollectionsTest {
     @Test
     public void averageAssign() {
         ArrayList<Integer> integers = Lists.newArrayList(1, 2, 3, 4, 5, 6, 7, 8);
+        
         List<List<Integer>> lists = Collections.averageAssign(integers, 5);
         lists.forEach(System.out::println);
 
+        System.out.println("-- --");
+
         List<List<Integer>> lists1 = Collections.averageAssign(integers, 4);
         lists1.forEach(System.out::println);
+
+        System.out.println("-- --");
 
         List<List<Integer>> lists2 = Collections.averageAssign(integers, 3);
         lists2.forEach(System.out::println);

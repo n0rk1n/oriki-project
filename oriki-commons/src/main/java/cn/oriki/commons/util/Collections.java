@@ -119,21 +119,23 @@ public class Collections {
     public static <T> List<List<T>> averageAssign(List<T> list, int n) {
         List<List<T>> result = new ArrayList<>();
         // 计算余数
-        int remaider = list.size() % n;
+        int s = list.size() % n;
         // 计算商
         int number = list.size() / n;
         // 定义偏移量
         int offset = 0;
         for (int i = 0; i < n; i++) {
             List<T> value;
-            if (remaider > 0) {
+            if (s > 0) {
                 value = list.subList(i * number + offset, (i + 1) * number + offset + 1);
-                remaider--;
+                s--;
                 offset++;
             } else {
                 value = list.subList(i * number + offset, (i + 1) * number + offset);
             }
-            result.add(value);
+            if (Collections.nonNullAndHasElements(value)) {
+                result.add(value);
+            }
         }
         return result;
     }
