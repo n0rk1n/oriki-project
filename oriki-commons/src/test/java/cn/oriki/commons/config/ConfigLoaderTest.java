@@ -31,8 +31,7 @@ public class ConfigLoaderTest {
 
     @Test
     public void testClear() {
-        boolean b = configLoader.clear();
-        Assert.assertTrue(b);
+        configLoader.clear();
     }
 
     @Test
