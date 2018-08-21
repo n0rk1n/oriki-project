@@ -87,10 +87,7 @@ public class ConfigLoader {
      */
     public boolean getBoolean(String key, boolean defaultBoolean) {
         Boolean b = getBoolean(key);
-        if (Objects.nonNull(b)) {
-            return b;
-        }
-        return defaultBoolean;
+        return Objects.nonNull(b) ? b : defaultBoolean;
     }
 
     /**
@@ -107,9 +104,8 @@ public class ConfigLoader {
      *
      * @return 清空成功，返回 true
      */
-    public boolean clear() {
+    public void clear() {
         this.parameters.clear();
-        return Integer.valueOf(0).equals(this.parameters.size());
     }
 
     /**
@@ -118,6 +114,7 @@ public class ConfigLoader {
      * @param configPath properties 配置文件地址
      */
     private void init(String configPath) {
+        // 使用 JDK 7 特性
         try (InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream(configPath)) {
             this.properties.load(inputStream);
             this.properties.forEach((entryKey, entryValue) -> {
