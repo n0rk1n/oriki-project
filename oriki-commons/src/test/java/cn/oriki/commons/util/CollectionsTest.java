@@ -90,4 +90,16 @@ public class CollectionsTest {
         lists2.forEach(System.out::println);
     }
 
+    @Test
+    public void partition() {
+        ArrayList<Integer> integers = Lists.newArrayList(1, 2, 3, 4, 5, 6, 7, 8);
+        List<List<Integer>> lists = Collections.partition(integers, 4);
+        lists.forEach(System.out::println);
+
+        System.out.println("-- --");
+
+        List<List<Integer>> lists1 = Collections.partition(integers, 3);
+        lists1.forEach(System.out::println);
+    }
+
 }

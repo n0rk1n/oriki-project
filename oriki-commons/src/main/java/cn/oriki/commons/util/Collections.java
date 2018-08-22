@@ -1,5 +1,7 @@
 package cn.oriki.commons.util;
 
+import com.google.common.collect.Lists;
+
 import java.util.*;
 
 /**
@@ -138,6 +140,18 @@ public class Collections {
             }
         }
         return result;
+    }
+
+    /**
+     * 按照元素的个数对 List 进行等分
+     *
+     * @param list 集合
+     * @param n    分割后每个集合的最大数量
+     * @param <T>  范型
+     * @return 等分后的集合
+     */
+    public static <T> List<List<T>> partition(List<T> list, int n) {
+        return Lists.partition(list, n);
     }
 
 }
