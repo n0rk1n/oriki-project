@@ -37,13 +37,12 @@ public class Dates {
     /**
      * 判断今天是否为指定日期的周年纪念日
      *
-     * @param targetMonth      目标月份
-     * @param targetDayOfMonth 目标日期
+     * @param localDate 目标日期
      * @return 今天是否为指定日期的周年纪念日
      */
-    public static boolean isTodayAnniversary(int targetMonth, int targetDayOfMonth) {
+    public static boolean isTodayAnniversary(@NonNull LocalDate localDate) {
         LocalDate today = LocalDate.now();
-        LocalDate of = LocalDate.of(today.getYear(), targetMonth, targetDayOfMonth);
+        LocalDate of = LocalDate.of(today.getYear(), localDate.getMonthValue(), localDate.getDayOfMonth());
         return isAnniversary(of, today);
     }
 
