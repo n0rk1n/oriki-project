@@ -12,11 +12,6 @@ import java.util.concurrent.*;
 public class ThreadManager {
 
     /**
-     * 内核数量
-     */
-    private static int size;
-
-    /**
      * Executor
      */
     private ThreadPoolExecutor threadPoolExecutor;
@@ -28,13 +23,21 @@ public class ThreadManager {
 
     private ThreadManager() {
         // 获取内核数 * 2
-        size = Runtime.getRuntime().availableProcessors() * 2;
+        /**
+         * 内核数量
+         */
+        int size = Runtime.getRuntime().availableProcessors() * 2;
 
         // 创建线程执行器
         this.threadPoolExecutor = new ThreadPoolExecutor(size, size, 0L,
                 TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>(), (ThreadFactory) Thread::new);
     }
 
+    /**
+     * 获取 ThreadManager 对象
+     *
+     * @return 单例对象
+     */
     public static ThreadManager getInstance() {
         if (threadManager == null) {
             synchronized (ThreadPoolManager.class) {
