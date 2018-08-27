@@ -3,6 +3,7 @@ package cn.oriki.commons.util;
 import lombok.NonNull;
 
 import java.time.Duration;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -149,6 +150,15 @@ public class DateTimes {
      */
     public static LocalDateTime parse(@NonNull String dateTimeString, @NonNull String pattern) {
         return LocalDateTime.parse(dateTimeString, DateTimeFormatter.ofPattern(pattern));
+    }
+
+    /**
+     * 获取当前时间的时间戳
+     *
+     * @return
+     */
+    public static Instant getInstant() {
+        return Instant.now();
     }
 
 }
