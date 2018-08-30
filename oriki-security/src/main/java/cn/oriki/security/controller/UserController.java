@@ -1,5 +1,6 @@
 package cn.oriki.security.controller;
 
+import cn.oriki.security.feign.UserFeignClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +29,14 @@ public class UserController {
         String serviceName = "oriki-user";
         String url = "http://" + serviceName + "/oriki-user/login?username=" + username + "&password=" + password + "";
         return this.restTemplate.getForObject(url, String.class);
+    }
+
+    @Autowired
+    private UserFeignClient userFeignClient;
+
+    @GetMapping("/login-test2")
+    public String loginTest2(String username, String password) {
+        return this.userFeignClient.login(username, password);
     }
 
 }
