@@ -35,17 +35,6 @@ public class Times {
     }
 
     /**
-     * 推进/缩减 指定分钟
-     *
-     * @param localTime LocalTime 对象
-     * @param number    分钟数
-     * @return LocalTime 对象
-     */
-    public static LocalTime plusMinutes(@NonNull LocalTime localTime, long number) {
-        return plus(localTime, number, ChronoUnit.MINUTES);
-    }
-
-    /**
      * 推进/缩减 指定时间
      *
      * @param localTime  LocalTime 对象

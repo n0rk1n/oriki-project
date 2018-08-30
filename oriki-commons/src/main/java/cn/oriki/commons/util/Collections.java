@@ -121,19 +121,19 @@ public class Collections {
     public static <T> List<List<T>> averageAssign(List<T> list, int n) {
         List<List<T>> result = new ArrayList<>();
         // 计算余数
-        int s = list.size() % n;
+        int remainder = list.size() % n;
         // 计算商
-        int number = list.size() / n;
+        int quotient = list.size() / n;
         // 定义偏移量
         int offset = 0;
         for (int i = 0; i < n; i++) {
             List<T> value;
-            if (s > 0) {
-                value = list.subList(i * number + offset, (i + 1) * number + offset + 1);
-                s--;
+            if (remainder > 0) {
+                value = list.subList(i * quotient + offset, (i + 1) * quotient + offset + 1);
+                remainder--;
                 offset++;
             } else {
-                value = list.subList(i * number + offset, (i + 1) * number + offset);
+                value = list.subList(i * quotient + offset, (i + 1) * quotient + offset);
             }
             if (Collections.nonNullAndHasElements(value)) {
                 result.add(value);

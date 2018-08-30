@@ -7,6 +7,7 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.Date;
 
 /**
  * 日期、时间工具类
@@ -74,7 +75,9 @@ public class DateTimes {
     }
 
     /**
-     * 推进（后退） hours 小时 TODO 可以按照需求定制
+     * 推进（后退） hours 小时
+     * <p>
+     * TODO 可以按照需求定制
      * <p>
      * 链式结构
      *
@@ -159,6 +162,16 @@ public class DateTimes {
      */
     public static Instant getInstant() {
         return Instant.now();
+    }
+
+    /**
+     * Instant 时间戳 转换为 Date 类型
+     *
+     * @param instant 时间戳
+     * @return Date
+     */
+    public static Date instantToDate(@NonNull Instant instant) {
+        return Date.from(instant);
     }
 
 }
