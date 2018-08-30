@@ -1,7 +1,6 @@
 package cn.oriki.security.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,12 +22,11 @@ public class UserController {
     @Autowired
     private RestTemplate restTemplate;
 
-    @GetMapping("/login-test")
+    @GetMapping("login-test")
     public String loginTest(String username, String password) {
-        ServiceInstance serviceInstance = this.loadBalancerClient.choose("oriki-user");
-        String host = serviceInstance.getHost();
-        int port = serviceInstance.getPort();
-        String url = HTTP_KEY_WORD + host + ":" + port + "oriki-user/login?username=" + username + "&password=" + password + "";
+        // 添加 @LoadBalanced 的情况
+        String serviceName = "oriki-user";
+        String url = "http://" + serviceName + "/oriki-user/login?username=" + username + "&password=" + password + "";
         return this.restTemplate.getForObject(url, String.class);
     }
 
