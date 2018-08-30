@@ -6,9 +6,8 @@ import org.junit.Test;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class ReflectsTest {
 
@@ -33,7 +32,7 @@ public class ReflectsTest {
     @Test
     public void getPublicMethodsWithoutObject() {
         List<Method> publicMethodsWithoutObject = Reflects.getPublicMethodsWithoutObject(Children.class);
-        assertEquals(Integer.valueOf(8), Integer.valueOf(publicMethodsWithoutObject.size()));
+        assertEquals(Integer.valueOf(9), Integer.valueOf(publicMethodsWithoutObject.size()));
     }
 
     @Test
