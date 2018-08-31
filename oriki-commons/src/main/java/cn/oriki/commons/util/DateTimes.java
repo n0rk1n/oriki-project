@@ -174,4 +174,14 @@ public class DateTimes {
         return Date.from(instant);
     }
 
+    /**
+     * Date 类型数据 转换为 Instant 数据
+     *
+     * @param date Date 类型对象
+     * @return 时间戳类型对象
+     */
+    public static Instant dateToInstant(@NonNull Date date) {
+        return date.toInstant();
+    }
+
 }
