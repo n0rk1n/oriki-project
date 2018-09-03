@@ -108,4 +108,11 @@ public class DateTimesTest {
         System.out.println(date);
     }
 
+    @Test
+    public void dateToInstant() {
+        Date date = new Date();
+        Instant instant = DateTimes.dateToInstant(date);
+        System.out.println(instant);
+    }
+
 }
