@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import java.time.*;
 import java.time.temporal.ChronoUnit;
+import java.util.Date;
 
 public class DateTimeTest {
 
@@ -164,6 +165,12 @@ public class DateTimeTest {
         // 获取当前时间戳
         Instant timestamp = DateTimes.getInstant();
         System.out.println("instant :" + timestamp);
+
+        Instant instant = DateTimes.dateToInstant(new Date());
+        System.out.println(instant);
+
+        Date date = DateTimes.instantToDate(instant);
+        System.out.println(date);
 
         // 当前时间戳是包含日期与时间的，与 java.util.Date 很类似，
         // 事实上 Instant 就是Java 8前的 Date ，
