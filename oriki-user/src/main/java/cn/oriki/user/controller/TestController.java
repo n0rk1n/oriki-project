@@ -16,10 +16,14 @@ import java.util.List;
 @RestController
 public class TestController {
 
-    @Autowired
-    private DiscoveryClient discoveryClient;
+    private final DiscoveryClient discoveryClient;
 
-    @GetMapping(value = "/test")
+    @Autowired
+    public TestController(DiscoveryClient discoveryClient) {
+        this.discoveryClient = discoveryClient;
+    }
+
+    @GetMapping(value = "/search-server")
     public String test() {
         // 获取 服务端注册的微服务
         List<String> serviceNames = this.discoveryClient.getServices();

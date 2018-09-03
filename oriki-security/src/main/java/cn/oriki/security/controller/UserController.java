@@ -27,7 +27,7 @@ public class UserController {
     public String loginTest(String username, String password) {
         // 添加 @LoadBalanced 的情况
         String serviceName = "oriki-user";
-        String url = "http://" + serviceName + "/oriki-user/login?username=" + username + "&password=" + password + "";
+        String url = HTTP_KEY_WORD + serviceName + "/oriki-user/login?username=" + username + "&password=" + password + "";
         return this.restTemplate.getForObject(url, String.class);
     }
 

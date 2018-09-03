@@ -6,10 +6,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * oriki-user 的 FeignClient
+ * <p>
+ * FeignClient 注解内的内容填写服务名称
  *
  * @author oriki.wang
  */
-@FeignClient(value = "oriki-user")
+@FeignClient(value = "oriki-user", path = "/oriki-user/user")
 public interface UserFeignClient {
 
     /**
@@ -19,7 +21,7 @@ public interface UserFeignClient {
      * @param password 密码
      * @return 请求结果
      */
-    @GetMapping("/oriki-user/login")
+    @GetMapping("/login")
     String login(@RequestParam("username") String username, @RequestParam("password") String password);
 
 }
