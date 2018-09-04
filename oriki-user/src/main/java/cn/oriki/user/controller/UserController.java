@@ -1,6 +1,6 @@
 package cn.oriki.user.controller;
 
-import cn.oriki.commons.util.Jsons;
+import cn.oriki.commons.response.Responses;
 import cn.oriki.commons.util.Md5s;
 import cn.oriki.user.entity.UserInfo;
 import org.slf4j.Logger;
@@ -39,7 +39,7 @@ public class UserController {
             userInfo.setName("normalUser");
             userInfo.setBirthday(new Date());
         }
-        return Jsons.toJson(userInfo);
+        return Responses.responseSuccess(userInfo);
     }
 
 }
