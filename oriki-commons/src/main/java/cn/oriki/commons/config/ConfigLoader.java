@@ -101,8 +101,6 @@ public class ConfigLoader {
 
     /**
      * 清空映射中所有配置
-     *
-     * @return 清空成功，返回 true
      */
     public void clear() {
         this.parameters.clear();

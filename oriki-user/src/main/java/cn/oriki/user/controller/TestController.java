@@ -23,18 +23,21 @@ public class TestController {
         this.discoveryClient = discoveryClient;
     }
 
-    @GetMapping(value = "/search-server")
-    public String test() {
+    @GetMapping(value = "/query-services")
+    public String queryServices() {
         // 获取 服务端注册的微服务
         List<String> serviceNames = this.discoveryClient.getServices();
         return serviceNames.toString();
     }
 
+    /**
+     * 从 Configuration 中获取数据
+     */
     @Value("${demo-key}")
     private String demoKey;
 
     @GetMapping("/demo-key")
-    public String test1() {
+    public String loadConfiguration() {
         return this.demoKey;
     }
 

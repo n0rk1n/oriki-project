@@ -22,10 +22,7 @@ public class ThreadManager {
     private static ThreadManager threadManager;
 
     private ThreadManager() {
-        // 获取内核数 * 2
-        /**
-         * 内核数量
-         */
+        // 内核数量：获取内核数 * 2
         int size = Runtime.getRuntime().availableProcessors() * 2;
 
         // 创建线程执行器

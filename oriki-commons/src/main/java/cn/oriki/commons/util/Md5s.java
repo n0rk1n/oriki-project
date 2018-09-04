@@ -12,23 +12,23 @@ import java.security.NoSuchAlgorithmException;
  */
 public class Md5s {
 
-    private static final char[] hexDigits = new char[]{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+    private static final char[] HEX_DIGITS = new char[]{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
     private Md5s() {
     }
 
     public static String getMd5(@NonNull String string) throws NoSuchAlgorithmException {
-        return hexdigest(string.getBytes());
+        return hexDigest(string.getBytes());
     }
 
     /**
      * 加密的方法
      *
-     * @param bytes
-     * @return
-     * @throws NoSuchAlgorithmException
+     * @param bytes byte 数组
+     * @return 密文
+     * @throws NoSuchAlgorithmException 无法创建加密抛出的对象
      */
-    private static String hexdigest(byte[] bytes) throws NoSuchAlgorithmException {
+    private static String hexDigest(byte[] bytes) throws NoSuchAlgorithmException {
         MessageDigest e = MessageDigest.getInstance("MD5");
         e.update(bytes);
         byte[] tmp = e.digest();
@@ -37,8 +37,8 @@ public class Md5s {
 
         for (int i = 0; i < 16; ++i) {
             byte byte0 = tmp[i];
-            str[k++] = hexDigits[byte0 >>> 4 & 15];
-            str[k++] = hexDigits[byte0 & 15];
+            str[k++] = HEX_DIGITS[byte0 >>> 4 & 15];
+            str[k++] = HEX_DIGITS[byte0 & 15];
         }
 
         return new String(str);

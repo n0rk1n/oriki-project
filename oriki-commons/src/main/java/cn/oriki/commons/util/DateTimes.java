@@ -67,8 +67,8 @@ public class DateTimes {
     /**
      * 获取两个时间差，填入时间为之前的时间，与调用该方法的时刻作比较，单位为毫秒值
      *
-     * @param before
-     * @return
+     * @param before 之前的 LocalDateTime 对象
+     * @return 现在和传入对象的时间差
      */
     public static long diffMillisWithNow(@NonNull LocalDateTime before) {
         return diffMillis(before, now());
@@ -158,7 +158,7 @@ public class DateTimes {
     /**
      * 获取当前时间的时间戳
      *
-     * @return
+     * @return 当前时间的 Instant 对象
      */
     public static Instant getInstant() {
         return Instant.now();
