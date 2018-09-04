@@ -20,6 +20,10 @@ public class Responses {
         return response("200", "success", object);
     }
 
+    public static String responseFail(Object object) {
+        return response("500", "fail", object);
+    }
+
     public static String responseException(Exception e) {
         return response("500", "fail", e.getMessage());
     }

@@ -1,6 +1,10 @@
 package cn.oriki.security.controller;
 
+import cn.oriki.commons.response.Responses;
 import cn.oriki.security.feign.UserFeignClient;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +17,8 @@ import org.springframework.web.client.RestTemplate;
  */
 @RestController
 public class UserController {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
     private static final String HTTP_KEY_WORD = "http://";
 
@@ -34,9 +40,15 @@ public class UserController {
     }
 
     @GetMapping("/login-test2")
+    @HystrixCommand(fallbackMethod = "loginTest2Fallback")
     public String loginTest2(String username, String password) {
         // 使用 Feign 的方式进行访问
         return this.userFeignClient.login(username, password);
+    }
+
+    private String loginTest2Fallback(String username, String password) {
+        LOGGER.error("用户执行 Feign 方式的登录方法失效，登录用户： 用户名： " + username + " ， 密码 ： ****** 。");
+        return Responses.responseFail("fail");
     }
 
 }
