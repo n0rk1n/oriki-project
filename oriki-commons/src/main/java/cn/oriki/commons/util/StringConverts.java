@@ -43,13 +43,13 @@ public class StringConverts {
             return s;
         }
         StringBuilder stringBuilder = new StringBuilder();
-        for (char aChar : s.toCharArray()) {
-            if (aChar == '\u3000') {
+        for (char c : s.toCharArray()) {
+            if (c == '\u3000') {
                 stringBuilder.append(' ');
-            } else if (aChar > '\uFF00' && aChar < '\uFF5F') {
-                stringBuilder.append((char) (aChar - 65248));
+            } else if (c > '\uFF00' && c < '\uFF5F') {
+                stringBuilder.append((char) (c - 65248));
             } else {
-                stringBuilder.append(aChar);
+                stringBuilder.append(c);
             }
         }
         return stringBuilder.toString();
