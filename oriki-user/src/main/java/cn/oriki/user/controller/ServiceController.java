@@ -3,26 +3,27 @@ package cn.oriki.user.controller;
 import cn.oriki.commons.response.Responses;
 import com.netflix.appinfo.InstanceInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.netflix.eureka.EurekaDiscoveryClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 /**
- * 测试用 Controller
+ * 服务状态检测 Controller
  *
- * @author oriki.wang
+ * @author oriki
  */
 @RestController
-public class TestController {
+@RequestMapping(value = "/service")
+public class ServiceController {
 
     private final DiscoveryClient discoveryClient;
 
     @Autowired
-    public TestController(DiscoveryClient discoveryClient) {
+    public ServiceController(DiscoveryClient discoveryClient) {
         this.discoveryClient = discoveryClient;
     }
 
@@ -33,7 +34,7 @@ public class TestController {
         return serviceNames.toString();
     }
 
-    @GetMapping(value = "/query-service-state")
+    @GetMapping(value = "/check-service-state")
     public String queryServiceStateByServiceId(String serviceId) {
         try {
             this.discoveryClient.getInstances(serviceId).forEach(e -> {
@@ -44,17 +45,6 @@ public class TestController {
         } catch (Exception e) {
             return Responses.responseFail("fail");
         }
-    }
-
-    /**
-     * 从 Configuration 中获取数据
-     */
-    @Value("${demo-key}")
-    private String demoKey;
-
-    @GetMapping("/demo-key")
-    public String loadConfiguration() {
-        return this.demoKey;
     }
 
 }
