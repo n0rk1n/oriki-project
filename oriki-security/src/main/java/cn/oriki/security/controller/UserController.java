@@ -20,8 +20,6 @@ public class UserController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
-    private static final String HTTP_KEY_WORD = "http://";
-
     private final RestTemplate restTemplate;
     private final UserFeignClient userFeignClient;
 
@@ -35,7 +33,7 @@ public class UserController {
     public String loginTest(String username, String password) {
         // 引入 Ribbon ，添加 @LoadBalanced 的情况，使用 RestTemplate 进行访问
         String serviceName = "oriki-user";
-        String url = HTTP_KEY_WORD + serviceName + "/oriki-user/login?username=" + username + "&password=" + password + "";
+        String url = "http://" + serviceName + "/oriki-user/login?username=" + username + "&password=" + password + "";
         return this.restTemplate.getForObject(url, String.class);
     }
 
