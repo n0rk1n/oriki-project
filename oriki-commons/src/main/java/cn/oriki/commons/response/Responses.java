@@ -20,12 +20,24 @@ public class Responses {
         return response("200", "success", object);
     }
 
+    /**
+     * 响应返回失败时调用的方法
+     *
+     * @param object 需要添加到 message 中的内容
+     * @return 响应实体的 json 格式
+     */
     public static String responseFail(Object object) {
         return response("500", "fail", object);
     }
 
+    /**
+     * 响应返回异常信息时调用的方法
+     *
+     * @param e Exception 对象
+     * @return 响应实体的 json 格式
+     */
     public static String responseException(Exception e) {
-        return response("500", "fail", e.getMessage());
+        return response("500", "exception", e.getMessage());
     }
 
     private static String response(String code, String type, Object obj) {
